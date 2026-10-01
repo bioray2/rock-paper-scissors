@@ -14,3 +14,20 @@ function getComputerChoice(){
 
     return computerChoice;
 }
+
+function getHumanChoice(){
+    let humanChoice = prompt("Choose between rock, paper and scissors")
+    
+    let loop = true;
+
+    while(loop){
+        if(humanChoice === "rock" || humanChoice === "paper" || humanChoice === "scissors"){
+            loop = false;
+            return humanChoice;
+        }
+        else{
+            loop = true;
+            humanChoice = prompt("Make sure to enter a valid input: rock, paper or scissors")
+        }
+    }
+}
