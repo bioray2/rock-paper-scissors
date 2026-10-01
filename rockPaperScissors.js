@@ -1,3 +1,5 @@
+console.log("JS is running!");
+
 function getComputerChoice(){
 
     let randNum = Math.random();
@@ -89,16 +91,16 @@ function displayScore(X, Y){
 function playGame(){
     for(numberOfRounds; numberOfRounds <= 5; numberOfRounds++){
         playRound()
+    }
 
-        if (humanScore == computerScore){
-            console.log("The Game Resulted in a Tie!")
-        }
-        else if(humanScore < computerScore){
-            console.log("The Game Resulted in a Loss!")
-        }
-        else if(humanScore > computerScore){
-            console.log("The Game Resulted in a Win!")
-        }
+    if (humanScore == computerScore){
+        console.log("The Game Resulted in a Tie!")
+    }
+    else if(humanScore < computerScore){
+        console.log("The Game Resulted in a Loss!")
+    }
+    else if(humanScore > computerScore){
+        console.log("The Game Resulted in a Win!")
     }
 }
 
