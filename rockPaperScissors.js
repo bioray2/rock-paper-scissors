@@ -1,5 +1,3 @@
-console.log("JS is running!");
-
 function getComputerChoice(){
 
     let randNum = Math.random();
