@@ -1,42 +1,62 @@
 function getComputerChoice(){
 
     let randNum = Math.random();
-    let computerChoice;
+    let choice;
 
     if (randNum < 0.33){
-        computerChoice = "rock";
+        choice = "rock";
     }
     else if(randNum > 0.33 && randNum < 0.66){
-        computerChoice = "paper"
+        choice = "paper"
     }
     else{
-        computerChoice = "scissors"
+        choice = "scissors"
     }
 
-    return computerChoice;
+    const cChoice = document.querySelector("#cChoice");
+    cChoice.textContent = "Computer Choice: " + choice;
+
+    return choice;
 }
 
+// retrives a choice from a human through button input
 function getHumanChoice(){
-    let humanChoice = prompt("Choose between rock, paper and scissors")
-    
-    let loop = true;
+    count++;
 
-    while(loop){
-        if(humanChoice === "rock" || humanChoice === "paper" || humanChoice === "scissors"){
-            loop = false;
-            return humanChoice;
-        }
-        else{
-            loop = true;
-            humanChoice = prompt("Make sure to enter a valid input: rock, paper or scissors")
-        }
-    }
+    // prompts the user to make a move
+    const title = document.querySelector("#title");
+    title.textContent = "Please Select an option with the buttons below!";
+
+    // sets a default value
+    let choice;
+
+    //  retrives choice from user with buttons
+    const rock = document.querySelector("#rock");
+    rock.addEventListener("click", () => {
+        choice = "rock"
+        playRound("rock");
+    });
+
+    const paper = document.querySelector("#paper");
+    paper.addEventListener("click", () => {
+        choice = "paper"
+        playRound("paper");
+    });
+
+    const scissors = document.querySelector("#scissors");
+    scissors.addEventListener("click", () => {
+        choice = "scissors"
+        playRound("scissors");
+    });
 }
 
-function playRound(){
+function playRound(humanChoice){
 
-    let humanChoice = getHumanChoice();
     let computerChoice = getComputerChoice();
+
+    //  updates player choice h3
+    const pChoice = document.querySelector("#pChoice");
+    pChoice.textContent = "Player Choice: " + humanChoice;
 
     switch(humanChoice){
         case "rock":
@@ -79,27 +99,24 @@ function playRound(){
             }
             break;
     }
-    displayScore(humanScore, computerScore)
+    updateScore();
 }
 
-function displayScore(X, Y){
-    console.log("The Score is You: " + X + " Computer: " + Y + " and its round " + numberOfRounds)
-}
 
 function playGame(){
-    for(numberOfRounds; numberOfRounds <= 5; numberOfRounds++){
-        playRound()
-    }
+    let count = 0;
 
-    if (humanScore == computerScore){
-        console.log("The Game Resulted in a Tie!")
-    }
-    else if(humanScore < computerScore){
-        console.log("The Game Resulted in a Loss!")
-    }
-    else if(humanScore > computerScore){
-        console.log("The Game Resulted in a Win!")
-    }
+    const play = document.querySelector("#play");
+    play.addEventListener("click", () => {
+        while(count <= 5){
+            getHumanChoice();
+        }
+    })
+}
+
+function updateScore(){
+    const scoreBoard = document.querySelector("#scoreBoard");
+    scoreBoard.textContent = "Player - " + humanScore + " | Computer - " + computerScore;
 }
 
 let numberOfRounds = 0;
